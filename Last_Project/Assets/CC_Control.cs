@@ -1,84 +1,119 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(CharacterController))]
 public class CC_Control : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float lookSensitivity = 150f;
-    public Transform cameraPivot;
+    public float turnSpeed = 12f;
 
     public float gravity = -9.81f;
-    public float jumpPower = 5f;         // 점프 기능까지 쓸 수 있게 옵션 추가
-    private float verticalVelocity = 0f; // y 속도 저장
+    private float verticalVelocity = 0f;
+
+    [Header("Refs")]
+    public ThirdPersonCamera thirdPersonCamera;
+    public Animator animator;
+    public float animDampTime = 0.1f;
+
+    [Header("Move Speed")]
+    public float walkSpeed = 5f;
+    public float runSpeed = 8f;
 
     private CharacterController controller;
     private Vector2 moveInput;
     private Vector2 lookInput;
-    private float pitch;
+    private bool isRunning;
+
+    private readonly int HashMoveX = Animator.StringToHash("MoveX");
+    private readonly int HashMoveY = Animator.StringToHash("MoveY");
+    private readonly int HashSpeed = Animator.StringToHash("Speed");
+    private readonly int HashIsRun = Animator.StringToHash("IsRun");
+    private readonly int HashAttack = Animator.StringToHash("Attack");
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        if (animator == null) animator = GetComponentInChildren<Animator>();
+        if (thirdPersonCamera == null) thirdPersonCamera = FindFirstObjectByType<ThirdPersonCamera>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-    public void OnMove(InputValue value)
-    {
-        moveInput = value.Get<Vector2>();
-    }
-
-    public void OnLook(InputValue value)
-    {
-        lookInput = value.Get<Vector2>();
-    }
+    public void OnMove(InputValue value) => moveInput = value.Get<Vector2>();
+    public void OnLook(InputValue value) => lookInput = value.Get<Vector2>();
 
     void Update()
     {
         float dt = Time.deltaTime;
 
-        // --------------------
-        // 1) 마우스 Yaw/Pitch 회전
-        // --------------------
-        float yaw = lookInput.x * lookSensitivity * dt;
-        transform.Rotate(Vector3.up * yaw);
+        if (animator != null && Mouse.current.leftButton.wasPressedThisFrame)
+            animator.SetTrigger(HashAttack);
 
-        float pitchDelta = -lookInput.y * lookSensitivity * dt;
-        pitch += pitchDelta;
-        pitch = Mathf.Clamp(pitch, -80f, 80f);
+        if (thirdPersonCamera != null)
+            thirdPersonCamera.AddLookInput(lookInput);
 
-        if (cameraPivot != null)
-            cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+        bool isAttacking = false;
+        if (animator != null)
+        {
+            var st = animator.GetCurrentAnimatorStateInfo(0);
+            isAttacking = st.IsTag("Attack");
+        }
 
-        // --------------------
-        // 2) 이동 입력
-        // --------------------
-        Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
-        move *= moveSpeed;
+        Vector2 move = isAttacking ? Vector2.zero : moveInput;
 
-        // --------------------
-        // 3) 중력 적용
-        // --------------------
+        isRunning = !isAttacking && Keyboard.current.leftShiftKey.isPressed;
+
+        float camYaw = (thirdPersonCamera != null) ? thirdPersonCamera.Yaw : transform.eulerAngles.y;
+        Quaternion targetRot = Quaternion.Euler(0f, camYaw, 0f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, turnSpeed * dt);
+
         if (controller.isGrounded)
         {
-            if (verticalVelocity < 0f)
-                verticalVelocity = -2f; // 지면 붙여놓기
-
-            // 점프 키를 쓸 경우 ↓
-            // if (Keyboard.current.spaceKey.wasPressedThisFrame)
-            //     verticalVelocity = jumpPower;
+            if (verticalVelocity < 0f) verticalVelocity = -2f;
         }
         else
         {
             verticalVelocity += gravity * dt;
         }
 
-        move.y = verticalVelocity;
+        Vector3 moveDir;
+        float inputMag = Mathf.Clamp01(move.magnitude);
 
-        // --------------------
-        // 4) 캐릭터 이동
-        // --------------------
-        controller.Move(move * dt);
+        if (thirdPersonCamera != null)
+        {
+            Vector3 f = thirdPersonCamera.transform.forward;
+            Vector3 r = thirdPersonCamera.transform.right;
+            f.y = 0f;
+            r.y = 0f;
+            f.Normalize();
+            r.Normalize();
+
+            moveDir = r * move.x + f * move.y;
+        }
+        else
+        {
+            moveDir = transform.right * move.x + transform.forward * move.y;
+        }
+
+        if (moveDir.sqrMagnitude > 1f) moveDir.Normalize();
+
+        float currentSpeed = isRunning ? runSpeed : walkSpeed;
+
+        Vector3 planar = moveDir * (currentSpeed * dt);
+        Vector3 vertical = Vector3.up * (verticalVelocity * dt);
+        controller.Move(planar + vertical);
+
+        if (animator != null)
+        {
+            Vector2 dir = move;
+            if (inputMag > 0.0001f) dir /= inputMag;
+
+            animator.SetFloat(HashMoveX, dir.x, animDampTime, dt);
+            animator.SetFloat(HashMoveY, dir.y, animDampTime, dt);
+            animator.SetFloat(HashSpeed, inputMag, animDampTime, dt);
+            animator.SetBool(HashIsRun, isRunning);
+        }
+
+        lookInput = Vector2.zero;
     }
 }
