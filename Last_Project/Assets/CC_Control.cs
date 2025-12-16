@@ -23,6 +23,8 @@ public class CC_Control : MonoBehaviour
     private Vector2 lookInput;
     private bool isRunning;
 
+    private bool isAttacking;
+
     private readonly int HashMoveX = Animator.StringToHash("MoveX");
     private readonly int HashMoveY = Animator.StringToHash("MoveY");
     private readonly int HashSpeed = Animator.StringToHash("Speed");
@@ -37,6 +39,8 @@ public class CC_Control : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        if (animator != null) animator.applyRootMotion = true;
     }
 
     public void OnMove(InputValue value) => moveInput = value.Get<Vector2>();
@@ -47,12 +51,14 @@ public class CC_Control : MonoBehaviour
         float dt = Time.deltaTime;
 
         if (animator != null && Mouse.current.leftButton.wasPressedThisFrame)
-            animator.SetTrigger(HashAttack);
+        {
+            if (!IsAttackOrTransitionToAttack())
+                animator.SetTrigger(HashAttack);
+        }
 
         if (thirdPersonCamera != null)
             thirdPersonCamera.AddLookInput(lookInput);
 
-        bool isAttacking = false;
         if (animator != null)
         {
             var st = animator.GetCurrentAnimatorStateInfo(0);
@@ -60,7 +66,6 @@ public class CC_Control : MonoBehaviour
         }
 
         Vector2 move = isAttacking ? Vector2.zero : moveInput;
-
         isRunning = !isAttacking && Keyboard.current.leftShiftKey.isPressed;
 
         float camYaw = (thirdPersonCamera != null) ? thirdPersonCamera.Yaw : transform.eulerAngles.y;
@@ -76,37 +81,10 @@ public class CC_Control : MonoBehaviour
             verticalVelocity += gravity * dt;
         }
 
-        Vector3 moveDir;
-        float inputMag = Mathf.Clamp01(move.magnitude);
-
-        if (thirdPersonCamera != null)
-        {
-            Vector3 f = thirdPersonCamera.transform.forward;
-            Vector3 r = thirdPersonCamera.transform.right;
-            f.y = 0f;
-            r.y = 0f;
-            f.Normalize();
-            r.Normalize();
-
-            moveDir = r * move.x + f * move.y;
-        }
-        else
-        {
-            moveDir = transform.right * move.x + transform.forward * move.y;
-        }
-
-        if (moveDir.sqrMagnitude > 1f) moveDir.Normalize();
-
-        float currentSpeed = isRunning ? runSpeed : walkSpeed;
-
-        Vector3 planar = moveDir * (currentSpeed * dt);
-        Vector3 vertical = Vector3.up * (verticalVelocity * dt);
-        controller.Move(planar + vertical);
-
         if (animator != null)
         {
-            Vector2 dir = move;
-            if (inputMag > 0.0001f) dir /= inputMag;
+            float inputMag = Mathf.Clamp01(move.magnitude);
+            Vector2 dir = (inputMag > 0.0001f) ? (move / inputMag) : Vector2.zero;
 
             animator.SetFloat(HashMoveX, dir.x, animDampTime, dt);
             animator.SetFloat(HashMoveY, dir.y, animDampTime, dt);
@@ -115,5 +93,31 @@ public class CC_Control : MonoBehaviour
         }
 
         lookInput = Vector2.zero;
+    }
+
+    void OnAnimatorMove()
+    {
+        if (animator == null) return;
+
+        Vector3 delta = animator.deltaPosition;
+        delta += Vector3.up * (verticalVelocity * Time.deltaTime);
+
+        controller.Move(delta);
+
+        transform.rotation = animator.rootRotation;
+    }
+
+    bool IsAttackOrTransitionToAttack()
+    {
+        if (animator == null) return false;
+
+        if (animator.IsInTransition(0))
+        {
+            var next = animator.GetNextAnimatorStateInfo(0);
+            if (next.IsTag("Attack")) return true;
+        }
+
+        var cur = animator.GetCurrentAnimatorStateInfo(0);
+        return cur.IsTag("Attack");
     }
 }

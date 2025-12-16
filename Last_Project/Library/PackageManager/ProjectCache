@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 639013747514934914
-    m_Hash: 1135682625
+      ticks: 639014546257495497
+    m_Hash: 2445899204
   m_LockFileStatus:
     m_FilePath: E:/Lighting-Study-Project/Last_Project/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 639013747564318050
-    m_Hash: 1616145967
+      ticks: 639014546257579057
+    m_Hash: 1794300658
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -22,6 +22,139 @@ m_LocalPackages:
 m_ProjectPath: E:/Lighting-Study-Project/Last_Project/Packages
 m_EditorVersion: 6000.2.8f1 (c9992ac36c34)
 m_ResolvedPackages:
+- packageId: com.unity.ai.navigation@2.0.9
+  testable: 0
+  isDirectDependency: 1
+  version: 2.0.9
+  source: 1
+  resolvedPath: E:\Lighting-Study-Project\Last_Project\Library\PackageCache\com.unity.ai.navigation@5218e4bf7edc
+  assetPath: Packages/com.unity.ai.navigation
+  name: com.unity.ai.navigation
+  displayName: AI Navigation
+  author:
+    name: 
+    email: 
+    url: 
+  category: 
+  type: 
+  description: The AI Navigation package contains high-level components that allow
+    you to use navmeshes to incorporate navigation and pathfinding in your game.
+    With this package installed you can build and use navmeshes at runtime and at
+    edit time, create dynamic obstacles, and use links to allow specific actions
+    (like jumping) as your characters navigate between navmeshes.
+  errors: []
+  versions:
+    all:
+    - 1.0.0-exp.2
+    - 1.0.0-exp.3
+    - 1.0.0-exp.4
+    - 1.1.0-pre.1
+    - 1.1.0-pre.2
+    - 1.1.1
+    - 1.1.3
+    - 1.1.4
+    - 1.1.5
+    - 1.1.6
+    - 1.1.7
+    - 2.0.0-pre.3
+    - 2.0.0-pre.4
+    - 2.0.0
+    - 2.0.3
+    - 2.0.4
+    - 2.0.5
+    - 2.0.6
+    - 2.0.7
+    - 2.0.8
+    - 2.0.9
+    compatible:
+    - 2.0.9
+    recommended: 2.0.9
+    deprecated: []
+  dependencies:
+  - name: com.unity.modules.ai
+    version: 1.0.0
+  resolvedDependencies:
+  - name: com.unity.modules.ai
+    version: 1.0.0
+  keywords:
+  - carving
+  - mesh
+  - navigation
+  - navmesh
+  - NavMesh
+  - navmesh agent
+  - navmesh link
+  - navmeshlink
+  - navmesh modifier
+  - navmeshmodifier
+  - navmesh modifier volume
+  - navmeshmodifiervolume
+  - navmesh obstacle
+  - navmesh surface
+  - navmeshsurface
+  - offmesh link
+  - off-mesh link
+  - pathfinding
+  registry:
+    id: main
+    name: 
+    url: https://packages.unity.com
+    scopes: []
+    isDefault: 1
+    capabilities: 7
+    configSource: 0
+    compliance:
+      status: 0
+      violations: []
+  hideInEditor: 1
+  entitlements:
+    licensingModel: 1
+  isAssetStorePackage: 0
+  datePublishedTicks: 638919725134710000
+  documentationUrl: https://docs.unity3d.com/Packages/com.unity.ai.navigation@2.0/manual/index.html
+  hasRepository: 1
+  repository:
+    type: git
+    url: https://github.cds.internal.unity3d.com/unity/com.unity.ai.navigation.git
+    revision: 91b1bd9119720d8e48b9f9de9ad18da1e8c1088e
+    path: 
+  unityLifecycle:
+    version: 2.0.9
+    nextVersion: 
+    recommendedVersion: 
+    isDeprecated: 0
+    deprecationMessage: 
+    isDiscoverable: 1
+  isDeprecated: 0
+  deprecationMessage: 
+  git:
+    hash: 
+    revision: 
+  upmReserved: '{"changelog":"### Added\n* New sample scene **9_agent_cornering_control**
+    to demonstrate controlling an agent''s velocity in order to better navigate tight
+    corners. ([UUM-59747](https://issuetracker.unity3d.com/product/unity/issues/guid/UUM-59747))\n\n###
+    Fixed\n* Fixed samples not correctly configuring navigation agent types when
+    imported into a project.\n* Foldouts in **AI Navigation** overlay collapse when
+    toggling settings. ([NAVB-144](https://issuetracker.unity3d.com/product/unity/issues/guid/NAVB-144))\n*
+    Fixed poor performance when enabling/disabling increasing numbers of NavMeshModifiers.
+    ([NAVB-96](https://issuetracker.unity3d.com/product/unity/issues/guid/NAVB-96))\n*
+    A small white square was displayed in the scene on top of the gizmo icons for
+    NavMesh Link, NavMesh Modifier Volume and NavMesh Surface. ([NAVB-154](https://issuetracker.unity3d.com/product/unity/issues/guid/NAVB-154))\n*
+    **Navigation Updater** no longer attempts to process scenes and prefabs from
+    the read-only **Packages** folder. ([NAVB-146](https://issuetracker.unity3d.com/product/unity/issues/guid/NAVB-146))"}'
+  assetStore:
+    productId: 
+  fingerprint: 5218e4bf7edc04fcad4ed3836c1c41aef334b996
+  editorCompatibility:
+    compatibilityLevel: 0
+    minimumPackageVersion: 2.0.9
+    minimumUnityVersion: 6000.0.0a1
+  compliance:
+    status: 0
+    violation:
+      scopePatternExpression: 
+      message: 
+      readMoreLink: 
 - packageId: com.unity.collab-proxy@2.9.3
   testable: 0
   isDirectDependency: 1
@@ -526,12 +659,12 @@ m_ResolvedPackages:
       scopePatternExpression: 
       message: 
       readMoreLink: 
-- packageId: com.unity.ide.vscode@1.2.1
+- packageId: com.unity.ide.vscode@1.2.5
   testable: 0
   isDirectDependency: 1
-  version: 1.2.1
+  version: 1.2.5
   source: 1
-  resolvedPath: E:\Lighting-Study-Project\Last_Project\Library\PackageCache\com.unity.ide.vscode@27b0f2094353
+  resolvedPath: E:\Lighting-Study-Project\Last_Project\Library\PackageCache\com.unity.ide.vscode@82e68656b7bd
   assetPath: Packages/com.unity.ide.vscode
   name: com.unity.ide.vscode
   displayName: Visual Studio Code Editor
@@ -594,13 +727,13 @@ m_ResolvedPackages:
   entitlements:
     licensingModel: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 637256030950000000
+  datePublishedTicks: 637800255360000000
   documentationUrl: 
   hasRepository: 1
   repository:
     type: git
-    url: https://github.cds.internal.unity3d.com/unity/com.unity.ide.vscode.git
-    revision: 4395bd811a72b875607adb1001398d0325947baa
+    url: https://github.com/Unity-Technologies/com.unity.ide.vscode.git
+    revision: b0740c80bfc2440527c317109f7c3d9100132722
     path: 
   unityLifecycle:
     version: 
@@ -618,7 +751,7 @@ m_ResolvedPackages:
   upmReserved: 
   assetStore:
     productId: 
-  fingerprint: 27b0f2094353d294f320e6ac2f8618dd4a274aad
+  fingerprint: 82e68656b7bdc5da8beb1fbaf1bb4ecf13456d51
   editorCompatibility:
     compatibilityLevel: 0
     minimumPackageVersion: 1.0.2
@@ -4566,7 +4699,7 @@ m_ResolvedPackages:
       violations: []
   hideInEditor: 1
   entitlements:
-    licensingModel: 0
+    licensingModel: 1
   isAssetStorePackage: 0
   datePublishedTicks: 638924605331920000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.xr.core-utils@2.5/manual/index.html
@@ -4697,7 +4830,7 @@ m_ResolvedPackages:
       violations: []
   hideInEditor: 1
   entitlements:
-    licensingModel: 0
+    licensingModel: 1
   isAssetStorePackage: 0
   datePublishedTicks: 638738251595540000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.xr.legacyinputhelpers@2.1/manual/index.html

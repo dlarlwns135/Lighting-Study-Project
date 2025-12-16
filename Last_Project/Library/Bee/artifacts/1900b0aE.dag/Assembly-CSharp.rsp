@@ -383,6 +383,10 @@
 -r:"Library/PackageCache/com.unity.visualscripting@6279e2b7c485/Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/sc.terrain.painter.editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/sc.terrain.painter.runtime.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.AI.Navigation.Editor.ConversionSystem.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.AI.Navigation.Editor.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.AI.Navigation.ref.dll"
+-r:"Library/Bee/artifacts/1900b0aE.dag/Unity.AI.Navigation.Updater.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.EditorCoroutines.Editor.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.InputSystem.ForUI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Unity.InputSystem.ref.dll"
@@ -425,8 +429,12 @@
 -analyzer:"C:/Program Files/6000.2.8f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Program Files/6000.2.8f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
 "Assets/CC_Control.cs"
+"Assets/CC_NavAI.cs"
+"Assets/FootstepEmitter.cs"
 "Assets/FreeOpenBuilding_1.1.2/FOB_1/Scripts/DoorMech.cs"
 "Assets/FreeOpenBuilding_1.1.2/FOB_1/Scripts/DrawerMech.cs"
+"Assets/Polytope Studio/Lowpoly_Demos/Environment_Free/Helpers/MouseLook.cs"
+"Assets/Polytope Studio/Lowpoly_Demos/Environment_Free/Helpers/PlayerMovement.cs"
 "Assets/ThirdPersonCamera.cs"
 -langversion:9.0
 /deterministic

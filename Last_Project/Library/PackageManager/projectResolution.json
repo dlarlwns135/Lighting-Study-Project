@@ -9,6 +9,16 @@
     "C:\\Program Files\\6000.2.8f1\\Editor\\Data\\Resources\\PackageManager\\BuiltInPackages\\BuiltInPackagesCombined.sha1"
   ],
   "outputs": {
+    "com.unity.ai.navigation@2.0.9": {
+      "name": "com.unity.ai.navigation",
+      "displayName": "AI Navigation",
+      "resolvedPath": "E:\\Lighting-Study-Project\\Last_Project\\Library\\PackageCache\\com.unity.ai.navigation@5218e4bf7edc",
+      "fingerprint": "5218e4bf7edc04fcad4ed3836c1c41aef334b996",
+      "editorCompatibility": "6000.0.0a1",
+      "version": "2.0.9",
+      "source": "registry",
+      "testable": false
+    },
     "com.unity.collab-proxy@2.9.3": {
       "name": "com.unity.collab-proxy",
       "displayName": "Unity Version Control",
@@ -48,13 +58,13 @@
       "source": "registry",
       "testable": false
     },
-    "com.unity.ide.vscode@1.2.1": {
+    "com.unity.ide.vscode@1.2.5": {
       "name": "com.unity.ide.vscode",
       "displayName": "Visual Studio Code Editor",
-      "resolvedPath": "E:\\Lighting-Study-Project\\Last_Project\\Library\\PackageCache\\com.unity.ide.vscode@27b0f2094353",
-      "fingerprint": "27b0f2094353d294f320e6ac2f8618dd4a274aad",
+      "resolvedPath": "E:\\Lighting-Study-Project\\Last_Project\\Library\\PackageCache\\com.unity.ide.vscode@82e68656b7bd",
+      "fingerprint": "82e68656b7bdc5da8beb1fbaf1bb4ecf13456d51",
       "editorCompatibility": "2019.2.0a12",
-      "version": "1.2.1",
+      "version": "1.2.5",
       "source": "registry",
       "testable": false
     },

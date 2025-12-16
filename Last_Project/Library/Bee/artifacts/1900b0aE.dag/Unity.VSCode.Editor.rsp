@@ -129,6 +129,7 @@
 -define:ENABLE_INPUT_SYSTEM
 -define:TEXTCORE_FONT_ENGINE_1_5_OR_NEWER
 -define:TEXTCORE_TEXT_ENGINE_1_5_OR_NEWER
+-define:ROSLYN_ANALYZER_FIX
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
 -define:UNITY_EDITOR_ONLY_COMPILATION
@@ -402,13 +403,14 @@
 -analyzer:"C:/Program Files/6000.2.8f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.Properties.SourceGenerator.dll"
 -analyzer:"C:/Program Files/6000.2.8f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"C:/Program Files/6000.2.8f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
-"Library/PackageCache/com.unity.ide.vscode@27b0f2094353/Editor/ProjectGeneration/AssemblyNameProvider.cs"
-"Library/PackageCache/com.unity.ide.vscode@27b0f2094353/Editor/ProjectGeneration/FileIO.cs"
-"Library/PackageCache/com.unity.ide.vscode@27b0f2094353/Editor/ProjectGeneration/GUIDGenerator.cs"
-"Library/PackageCache/com.unity.ide.vscode@27b0f2094353/Editor/ProjectGeneration/ProjectGeneration.cs"
-"Library/PackageCache/com.unity.ide.vscode@27b0f2094353/Editor/ProjectGeneration/ProjectGenerationFlag.cs"
-"Library/PackageCache/com.unity.ide.vscode@27b0f2094353/Editor/VSCodeDiscovery.cs"
-"Library/PackageCache/com.unity.ide.vscode@27b0f2094353/Editor/VSCodeScriptEditor.cs"
+"Library/PackageCache/com.unity.ide.vscode@82e68656b7bd/Editor/ProjectGeneration/AssemblyNameProvider.cs"
+"Library/PackageCache/com.unity.ide.vscode@82e68656b7bd/Editor/ProjectGeneration/FileIO.cs"
+"Library/PackageCache/com.unity.ide.vscode@82e68656b7bd/Editor/ProjectGeneration/GUIDGenerator.cs"
+"Library/PackageCache/com.unity.ide.vscode@82e68656b7bd/Editor/ProjectGeneration/ProjectGeneration.cs"
+"Library/PackageCache/com.unity.ide.vscode@82e68656b7bd/Editor/ProjectGeneration/ProjectGenerationFlag.cs"
+"Library/PackageCache/com.unity.ide.vscode@82e68656b7bd/Editor/ProjectGeneration/StringUtils.cs"
+"Library/PackageCache/com.unity.ide.vscode@82e68656b7bd/Editor/VSCodeDiscovery.cs"
+"Library/PackageCache/com.unity.ide.vscode@82e68656b7bd/Editor/VSCodeScriptEditor.cs"
 -langversion:9.0
 /deterministic
 /optimize+
